@@ -1,13 +1,12 @@
-# Use Java 17
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk-jammy
 
-# Copy project
 WORKDIR /app
+
 COPY . .
 
-# Build app
 RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
-# Run app
+EXPOSE 8081
+
 CMD ["java", "-jar", "target/*.jar"]
